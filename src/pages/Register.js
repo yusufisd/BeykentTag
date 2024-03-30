@@ -1,8 +1,7 @@
 import React from 'react'
 import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "react-native";
 
-
-export default function Register() {
+const Register = ({navigation}) =>  {
 return (
 <SafeAreaView style={styles.container}>
     <View style={styles.card}>
@@ -15,12 +14,20 @@ return (
       <TextInput placeholder='Şifre' style={styles.input}></TextInput>
       <Button  title='Gönder' ></Button>
 
-      <Text style={{ marginTop:10 }}>Hesabın varsa  <Text style={{color:'blue' }}> giriş yap!</Text></Text>
+      <Text style={{ marginTop:10 }}>Hesabın varsa  
+        <Text style={{color:'blue' }}
+        onPress={() =>
+          navigation.navigate('Giriş Yap')
+        }
+        > Giriş yap!</Text>
+      </Text>
 
     </View>
 </SafeAreaView>
 )
 }
+
+export default Register;
 
 const styles = StyleSheet.create({
 container:{
