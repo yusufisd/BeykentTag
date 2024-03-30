@@ -12,8 +12,8 @@ return (
 <NavigationContainer>
   <Stack.Navigator>
 
-    <Stack.Screen name="Sürücü Ol/Yolcu Ol" component={FirstPage} />
     <Stack.Screen name="Giriş Yap" component={Login} />
+    <Stack.Screen name="Sürücü Ol/Yolcu Ol" component={FirstPage} />
     <Stack.Screen name="Kayıt Ol" component={Register} />
     <Stack.Screen name="Servisler" component={Services} />
 
