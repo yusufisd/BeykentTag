@@ -1,83 +1,64 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, SafeAreaView, Image } from "react-native";
+import { View, Text, Button, StyleSheet, SafeAreaView, Image, ScrollView, TouchableOpacity } from "react-native";
+import Card from '../components/Services/Card';
 
-
-const App = () => {
+const App = ({navigation}) => {
 return (
 <SafeAreaView style={styles.container}>
-
-
-
     <Text style={styles.pageTitle}>SEFERLER</Text>
-
-
-    <View style={styles.card}>
-        <Text style={styles.card_title}>AYAZAĞA - ESENLER</Text>
-        <View style={styles.card_hr} />
-        <View style={styles.card_container}>
-            <Image style={styles.image} source={require('../../assets/icon.png')}></Image>
-            <View style={styles.container_content}>
-                <Text>Gidiş Saati: 17:00</Text>
-                <Text>Kapasite: 2</Text>
-                <Text>Ücret: 70 TL</Text>
-            </View>
-        </View>
-    </View>
-
-    <View style={styles.card}>
-        <Text style={styles.card_title}>K.ÇEKMECE - AYAZAĞA</Text>
-        <View style={styles.card_hr} />
-        <View style={styles.card_container}>
-            <Image style={styles.image} source={require('../../assets/icon.png')}></Image>
-            <View style={styles.container_content}>
-                <Text>Gidiş Saati: 17:00</Text>
-                <Text>Kapasite: 2</Text>
-                <Text>Ücret: 70 TL</Text>
-            </View>
-        </View>
-    </View>
-
-    <View style={styles.card}>
-        <Text style={styles.card_title}>ATAŞEHİR - AYAZAĞA</Text>
-        <View style={styles.card_hr} />
-        <View style={styles.card_container}>
-            <Image style={styles.image} source={require('../../assets/icon.png')}></Image>
-            <View style={styles.container_content}>
-                <Text>Gidiş Saati: 17:00</Text>
-                <Text>Kapasite: 2</Text>
-                <Text>Ücret: 70 TL</Text>
-            </View>
-        </View>
-    </View>
-
-    <View style={styles.card}>
-        <Text style={styles.card_title}>ESENLER - AYAZAĞA</Text>
-        <View style={styles.card_hr} />
-        <View style={styles.card_container}>
-            <Image style={styles.image} source={require('../../assets/icon.png')}></Image>
-            <View style={styles.container_content}>
-                <Text>Gidiş Saati: 17:00</Text>
-                <Text>Kapasite: 2</Text>
-                <Text>Ücret: 70 TL</Text>
-            </View>
-        </View>
-    </View>
-
-
-
+    <ScrollView>
+    { datas.map((data) => (
+        <TouchableOpacity onPress={() => navigation.navigate('İçerik Detay')}>
+            <Card data={data}/>
+        </TouchableOpacity>
+    ))}
+    </ScrollView>
 </SafeAreaView>
+)};
+export default App;
 
-)
-}
-
-
+const datas = [
+    {
+        from:'Küçükçekmece',
+        to:'Ayazağa',
+        price:150,
+        capacity:3,
+        date:'15/04/2024',
+        time:'15:00'
+    },
+    {
+        from:'Esenler',
+        to:'Ayazağa',
+        price:250,
+        capacity:1,
+        date:'02/04/2024',
+        time:'08:30'
+    },
+    {
+        from:'Hadımköy',
+        to:'Ataşehir',
+        price:350,
+        capacity:3,
+        date:'05/03/2024',
+        time:'14:00'
+    },
+    {
+        from:'Taksim',
+        to:'Maltepe',
+        price:350,
+        capacity:3,
+        date:'12/04/2024',
+        time:'12:00'
+    }
+];
 
 const styles = StyleSheet.create({
 container:{
 padding:3,
 backgroundColor:'lightgray',
 flex:1,
-flexDirection:'column'
+flexDirection:'column',
+overflow:'scroll'
 },
 card:{
 marginLeft:50,
@@ -149,4 +130,3 @@ textAlign:'center',
 
 });
 
-export default App;
