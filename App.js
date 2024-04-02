@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 
 import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import CreateContent from './src/pages/CreateContent';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,6 +19,7 @@ return (
 <Provider store={store}>
   <NavigationContainer>
     <Drawer.Navigator>
+      <Drawer.Screen name="Kayıt Ekle" component={CreateContent} />
       <Drawer.Screen name="Sürücü Ol/Yolcu Ol" component={FirstPage} />
       <Drawer.Screen name="Giriş Yap" component={Login} />
       <Drawer.Screen name="Servisler" component={Services} />
