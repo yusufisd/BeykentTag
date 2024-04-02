@@ -6,21 +6,25 @@ import Login from './src/pages/Login';
 import Register from './src/pages/Register';
 import FirstPage from './src/pages/FirstPage';
 import Detail from './src/pages/Detail';
+import { store } from './src/redux/store';
+import { Provider } from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
 return (
-<NavigationContainer>
-  <Stack.Navigator>
+<Provider store={store}>
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Sürücü Ol/Yolcu Ol" component={FirstPage} />
+      <Stack.Screen name="Giriş Yap" component={Login} />
+      <Stack.Screen name="Servisler" component={Services} />
+      <Stack.Screen name="İçerik Detay" component={Detail} />
+      <Stack.Screen name="Kayıt Ol" component={Register} />
 
-    <Stack.Screen name="Servisler" component={Services} />
-    <Stack.Screen name="İçerik Detay" component={Detail} />
-    <Stack.Screen name="Sürücü Ol/Yolcu Ol" component={FirstPage} />
-    <Stack.Screen name="Giriş Yap" component={Login} />
-    <Stack.Screen name="Kayıt Ol" component={Register} />
+    </Stack.Navigator>
+  </NavigationContainer>
+</Provider>
 
-  </Stack.Navigator>
-</NavigationContainer>
 );
 };
 

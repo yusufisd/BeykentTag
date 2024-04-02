@@ -1,16 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "react-native";
-
+import { useSelector, useDispatch } from 'react-redux'
+import { setIsLoading } from '../redux/userSlice';
+import { login } from '../redux/userSlice';
 
 const Login = ({navigation}) => {
+  const [email,setEmail] = useState('')
+  const [sifre,setSifre] = useState('')
+  const {isLogin} = useSelector((state) => state.user)
+  const dispatch = useDispatch()
 return (
 <SafeAreaView style={styles.container}>
     <View style={styles.card}>
 
       <Text style={styles.card_title}>Giriş Yap</Text>
-      <TextInput placeholder='Email' style={styles.input}></TextInput>
-      <TextInput placeholder='Şifre' style={styles.input}></TextInput>
-      <Button  title='Gönder' ></Button>
+      <TextInput placeholder='Email' style={styles.input} onChangeText={newEmail => setEmail(newEmail)} ></TextInput>
+      <TextInput placeholder='Şifre' style={styles.input} onChangeText={newSifre => setSifre(newSifre)} ></TextInput>
+      <Button  title='Gönder' onPress={()=>dispatch(login({email,sifre}))} ></Button>
 
       <Text style={{ marginTop:10 }}>Hesabın yok mu? 
         <Text

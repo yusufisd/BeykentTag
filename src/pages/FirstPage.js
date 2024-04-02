@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput, TouchableOpacity } from "react-native";
-
+import app from '../../firebaseConfig';
 
 const Login = ({navigation}) => {
 const [isLogin, setIsLogin] = useState(true);

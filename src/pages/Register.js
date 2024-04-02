@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "react-native";
-
+import { useSelector, useDispatch } from 'react-redux'
+import { register } from '../redux/userSlice';
 const Register = ({navigation}) =>  {
+  const [email,setEmail] = useState('')
+  const [sifre,setSifre] = useState('')
+  const dispatch = useDispatch()
 return (
 <SafeAreaView style={styles.container}>
     <View style={styles.card}>
@@ -10,9 +14,9 @@ return (
       <TextInput placeholder='Ad' style={styles.input}></TextInput>
       <TextInput placeholder='Soyad' style={styles.input}></TextInput>
       <TextInput placeholder='Telefon' style={styles.input}></TextInput>
-      <TextInput placeholder='Email' style={styles.input}></TextInput>
-      <TextInput placeholder='Şifre' style={styles.input}></TextInput>
-      <Button  title='Gönder' ></Button>
+      <TextInput placeholder='Email' style={styles.input} onChangeText={newEmail => setEmail(newEmail)}></TextInput>
+      <TextInput placeholder='Şifre' style={styles.input} onChangeText={newSifre => setSifre(newSifre)}></TextInput>
+      <Button  title='Gönder' onPress={()=>dispatch(register({email,sifre}))}></Button>
 
       <Text style={{ marginTop:10 }}>Hesabın varsa  
         <Text style={{color:'blue' }}
