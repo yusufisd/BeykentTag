@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "
 import { useSelector, useDispatch } from 'react-redux'
 import { setIsLoading } from '../redux/userSlice';
 import { login } from '../redux/userSlice';
+import logo from '../../assets/logo.png';
 
 const Login = ({navigation}) => {
   const [email,setEmail] = useState('')
@@ -11,18 +12,20 @@ const Login = ({navigation}) => {
   const dispatch = useDispatch()
 return (
 <SafeAreaView style={styles.container}>
+    <View style={{ backgroundColor:'lightgray', height:40, marginLeft:-50, marginBottom:100 }}>
+      <Image source={logo} />
+    </View>
     <View style={styles.card}>
 
-      <Text style={styles.card_title}>Giriş Yap</Text>
       <TextInput placeholder='Email' style={styles.input} onChangeText={newEmail => setEmail(newEmail)} ></TextInput>
       <TextInput placeholder='Şifre' style={styles.input} onChangeText={newSifre => setSifre(newSifre)} ></TextInput>
-      <Button  title='Gönder' onPress={()=>dispatch(login({email,sifre}))} ></Button>
+      <Button  title='giriş yap' onPress={()=>dispatch(login({email,sifre}))} ></Button>
 
       <Text style={{ marginTop:10 }}>Hesabın yok mu? 
         <Text
           style={{color:'blue' }}
           onPress={() =>
-            navigation.navigate('Kayıt Ol')
+            navigation.navigate(' Kayıt Ol')
           }
           >Kayıt Ol!</Text>
       </Text>

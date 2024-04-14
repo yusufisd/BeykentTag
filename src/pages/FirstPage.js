@@ -1,14 +1,21 @@
 import {React, useState} from 'react'
 import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput, TouchableOpacity } from "react-native";
 import app from '../../firebaseConfig';
+import logo from '../../assets/logo.png';
 
 const Login = ({navigation}) => {
 const [isLogin, setIsLogin] = useState(true);
 return (
 <SafeAreaView style={styles.container}>
 
+  
+
 {isLogin ? (
         <>
+        <View style={{ backgroundColor:'lightgray', height:100, marginLeft:-50, marginTop:-100, marginBottom:90 }}>
+          <Image source={logo} />
+        </View>
+        <View style={{ flexDirection:'row', textAlign:'center', justifyContent:'space-between', paddingHorizontal:30 }}>
           <TouchableOpacity onPress={() => navigation.navigate('Giriş Yap')}>
             <View style={styles.card}>
               <Text style={styles.custom_text}>Sürücü Ol</Text>
@@ -20,6 +27,7 @@ return (
               <Text style={styles.custom_text}>Yolcu Ol</Text>
             </View>
           </TouchableOpacity>
+          </View>
         </>
       ) : (
         <>
@@ -47,10 +55,9 @@ container:{
   padding:3,
   backgroundColor:'lightgray',
   flex:1,
-  flexDirection:'row',
+  flexDirection:'column',
   textAlign:'center',
   justifyContent:'center',
-  gap:25
 },
 
 card:{
