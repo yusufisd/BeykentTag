@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "
 import { useSelector, useDispatch } from 'react-redux'
 import { setIsLogin } from '../redux/userSlice';
 import { login } from '../redux/userSlice';
+import logo from '../../assets/logo.png';
 import Toast from 'react-native-simple-toast';
 
 const Login = ({navigation}) => {
@@ -30,6 +31,9 @@ const Login = ({navigation}) => {
 
 return (
 <SafeAreaView style={styles.container}>
+    <View style={{ backgroundColor:'lightgray', height:40, marginLeft:-50, marginBottom:100 }}>
+      <Image source={logo} />
+    </View>
     <View style={styles.card}>
 
     <Text style={styles.card_title}>Giriş Yap</Text>
