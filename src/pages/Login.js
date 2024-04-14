@@ -1,33 +1,53 @@
 import React, { useState } from 'react'
 import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "react-native";
 import { useSelector, useDispatch } from 'react-redux'
-import { setIsLoading } from '../redux/userSlice';
+import { setIsLogin } from '../redux/userSlice';
 import { login } from '../redux/userSlice';
+import Toast from 'react-native-simple-toast';
 
 const Login = ({navigation}) => {
   const [email,setEmail] = useState('')
   const [sifre,setSifre] = useState('')
   const {isLogin} = useSelector((state) => state.user)
   const dispatch = useDispatch()
+  console.log(isLogin)
+
+
+
+  const handleLogin = () => {
+    dispatch(login({ email, sifre }))
+        .then((result) => {
+            if (result.payload.isLogin) {
+
+            }else{
+              Toast.show('Giriş başarılı.');
+              navigation.navigate('Sürücü Ol/Yolcu Ol');
+            }
+        })
+        .catch((error) => {
+            Toast.show('Giriş başarısız.');
+        });
+};
+
 return (
 <SafeAreaView style={styles.container}>
     <View style={styles.card}>
 
-      <Text style={styles.card_title}>Giriş Yap</Text>
-      <TextInput placeholder='Email' style={styles.input} onChangeText={newEmail => setEmail(newEmail)} ></TextInput>
-      <TextInput placeholder='Şifre' style={styles.input} onChangeText={newSifre => setSifre(newSifre)} ></TextInput>
-      <Button  title='Gönder' onPress={()=>dispatch(login({email,sifre}))} ></Button>
+    <Text style={styles.card_title}>Giriş Yap</Text>
+    <TextInput placeholder='Email' style={styles.input} onChangeText={newEmail => setEmail(newEmail)} ></TextInput>
+    <TextInput placeholder='Şifre' style={styles.input} onChangeText={newSifre => setSifre(newSifre)} ></TextInput>
+    <Button  title='Gönder' onPress={ handleLogin }  ></Button>
 
-      <Text style={{ marginTop:10 }}>Hesabın yok mu? 
-        <Text
-          style={{color:'blue' }}
-          onPress={() =>
-            navigation.navigate('Kayıt Ol')
-          }
-          >Kayıt Ol!</Text>
-      </Text>
+    <Text style={{ marginTop:10 }}>Hesabın yok mu? 
+      <Text
+        style={{color:'blue' }}
+        onPress={() =>
+          navigation.navigate('Kayıt Ol')
+        }
+        >Kayıt Ol!</Text>
+    </Text>
 
-    </View>
+  </View>
 </SafeAreaView>
 )
 }

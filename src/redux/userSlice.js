@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 
 
+
 export const login = createAsyncThunk('user/login', async({email, sifre})=>{
 
     try {
@@ -15,8 +16,7 @@ export const login = createAsyncThunk('user/login', async({email, sifre})=>{
             token,
             user: user,
         }
-
-        return userData
+        return userData;
 
     } catch (error) {
         console.log("userSlice 21 line: ", error)
@@ -67,24 +67,26 @@ export const userSlice = createSlice({
         setSifre: (state,action) => {
             state.sifre=action.payload
         },
-        setIsLoading: (state,action) => {
-            state.isLoading=action.payload
-        }
+        setIsLogin: (state,action) => {
+            state.isLogin=action.payload
+        },
     },
     extraReducers: (builder) => {
         builder
             .addCase(login.pending, (state)=>{
-
+                state.isLogin = false
             })
             .addCase(login.fulfilled, (state,action)=>{
                 state.user = action.payload.user;
                 state.token = action.payload.token;
+                state.isLogin = true
             })
             .addCase(login.rejected, (state,action)=>{
                 state.error = action.error.message;
+                state.isLogin=false
             })
     }
 })
 
-export const {setEmail,setSifre,setIsLoading} = userSlice.actions
+export const {setEmail,setSifre,setIsLogin} = userSlice.actions
 export default userSlice.reducer;
