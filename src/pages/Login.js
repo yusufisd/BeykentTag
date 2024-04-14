@@ -10,7 +10,6 @@ const Login = ({navigation}) => {
   const [sifre,setSifre] = useState('')
   const {isLogin} = useSelector((state) => state.user)
   const dispatch = useDispatch()
-  console.log(isLogin)
 
 
 

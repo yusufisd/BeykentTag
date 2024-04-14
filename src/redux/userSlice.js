@@ -19,13 +19,10 @@ export const login = createAsyncThunk('user/login', async({email, sifre})=>{
         return userData;
 
     } catch (error) {
-        console.log("userSlice 21 line: ", error)
         throw error
     }
 })
 export const register = createAsyncThunk('user/register', async ({ email, sifre }) => {
-    console.log("email:", email);
-    console.log("password:", sifre);
     try {
       const auth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(auth, email, sifre);
