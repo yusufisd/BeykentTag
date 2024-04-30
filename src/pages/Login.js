@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "react-native";
+import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput, ScrollView } from "react-native";
 import { useSelector, useDispatch } from 'react-redux'
 import { setIsLogin } from '../redux/userSlice';
 import { login } from '../redux/userSlice';
@@ -31,13 +31,13 @@ const Login = ({navigation}) => {
 
 return (
 <SafeAreaView style={styles.container}>
+  <ScrollView>
     <View style={{ backgroundColor:'lightgray', height:40, marginLeft:-50, marginBottom:100 }}>
       <Image source={logo} />
     </View>
     <View style={styles.card}>
 
-    <Text style={styles.card_title}>Giriş Yap</Text>
-    <TextInput placeholder='Email' style={styles.input} onChangeText={newEmail => setEmail(newEmail)} ></TextInput>
+    <TextInput placeholder='Email' autoFocus={true} style={styles.input} onChangeText={newEmail => setEmail(newEmail)} ></TextInput>
     <TextInput placeholder='Şifre' style={styles.input} onChangeText={newSifre => setSifre(newSifre)} ></TextInput>
     <Button  title='Gönder' onPress={ handleLogin }  ></Button>
 
@@ -49,8 +49,8 @@ return (
         }
         >Kayıt Ol!</Text>
     </Text>
-
   </View>
+  </ScrollView>
 </SafeAreaView>
 )
 }
@@ -61,7 +61,7 @@ container:{
 padding:3,
 backgroundColor:'lightgray',
 flex:1,
-flexDirection:'column'
+flexDirection:'column',
 },
 
 

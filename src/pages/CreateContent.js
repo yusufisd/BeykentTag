@@ -1,23 +1,23 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "react-native";
+import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput,ScrollView } from "react-native";
 import { useSelector, useDispatch } from 'react-redux'
 import { register } from '../redux/userSlice';
 
 const CreateContent = () => {
   return (
     <SafeAreaView style={styles.container}>
-    <View style={styles.card}>
-
-      <Text style={styles.card_title}>Servis Ekle</Text>
-      <TextInput placeholder='Nereden' style={styles.input}></TextInput>
-      <TextInput placeholder='Nereye' style={styles.input}></TextInput>
-      <TextInput placeholder='Tarih' style={styles.input}></TextInput>
-      <TextInput placeholder='Saat' style={styles.input} ></TextInput>
-      <TextInput placeholder='Kapasite' style={styles.input} ></TextInput>
-      <TextInput placeholder='Fiyat' style={styles.input} ></TextInput>
-      <Button  title='kaydet' ></Button>
-
-    </View>
+      <ScrollView>
+        <View style={styles.card}>
+          <Text style={styles.card_title}>Servis Ekle</Text>
+          <TextInput placeholder='Nereden' style={styles.input}></TextInput>
+          <TextInput placeholder='Nereye' style={styles.input}></TextInput>
+          <TextInput placeholder='Tarih' style={styles.input}></TextInput>
+          <TextInput placeholder='Saat' style={styles.input} ></TextInput>
+          <TextInput placeholder='Kapasite' style={styles.input} ></TextInput>
+          <TextInput placeholder='Fiyat' style={styles.input} ></TextInput>
+          <Button  title='kaydet' ></Button>
+        </View>
+    </ScrollView>
 </SafeAreaView>
   )
 }

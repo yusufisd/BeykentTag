@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput } from "react-native";
+import { View, Text, Button, StyleSheet, SafeAreaView, Image, TextInput, ScrollView } from "react-native";
 import { useSelector, useDispatch } from 'react-redux'
 import { register } from '../redux/userSlice';
 const Register = ({navigation}) =>  {
@@ -8,8 +8,8 @@ const Register = ({navigation}) =>  {
   const dispatch = useDispatch()
 return (
 <SafeAreaView style={styles.container}>
+  <ScrollView>
     <View style={styles.card}>
-
       <Text style={styles.card_title}>Kayıt Ol</Text>
       <TextInput placeholder='Ad' style={styles.input}></TextInput>
       <TextInput placeholder='Soyad' style={styles.input}></TextInput>
@@ -25,8 +25,8 @@ return (
         }
         > Giriş yap!</Text>
       </Text>
-
     </View>
+    </ScrollView>
 </SafeAreaView>
 )
 }
