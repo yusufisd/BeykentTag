@@ -1,8 +1,37 @@
-import React from "react";
-import { View, Text, Button, StyleSheet, SafeAreaView, Image, ScrollView, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
 import Card from '../components/Services/Card';
+import {  Text, TextInput, StyleSheet, TouchableOpacity,SafeAreaView, ScrollView,  } from 'react-native';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCCHc6R-pLjxqK9Wq2r2NXrUPqAMp70ZHM",
+    authDomain: "beykenttag.firebaseapp.com",
+    projectId: "beykenttag",
+    storageBucket: "beykenttag.appspot.com",
+    messagingSenderId: "116644081560",
+    appId: "1:116644081560:web:22c5c9da8b28803dd845ed",
+    measurementId: "G-4FWDS63WK7"
+  };
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const fetchServices = async () => {
+    const servicesSnapshot = await getDocs(collection(db, 'Services'));
+    const servicesList = servicesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return servicesList;
+  };
+
 
 const App = ({navigation}) => {
+    const [services, setServices] = useState([]);
+    const loadServices = async () => {
+        const fetchedServices = await fetchServices();
+        setServices(fetchedServices);
+      };
+    useEffect(() => {
+        loadServices();
+        console.log(services)
+      }, []);
 return (
 <SafeAreaView style={styles.container}>
     <Text style={styles.pageTitle}>SEFERLER</Text>
