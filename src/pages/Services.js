@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from '../components/Services/Card';
-import {  Text, TextInput, StyleSheet, TouchableOpacity,SafeAreaView, ScrollView,  } from 'react-native';
+import {  Text, TextInput, StyleSheet, TouchableOpacity,SafeAreaView, ScrollView,FlatList , View } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 
@@ -30,16 +30,33 @@ const App = ({navigation}) => {
       };
     useEffect(() => {
         loadServices();
-        console.log(services)
       }, []);
+
+      const renderItem = ({ item }) => (
+        <View style={styles.container}>
+          <Text>{`Nereden: ${item.from}`}</Text>
+          <Text>{`Nereye: ${item.to}`}</Text>
+          <Text>{`Fiyat: ${item.price}`}</Text>
+          <Text>{`Kapasite: ${item.capacity}`}</Text>
+          <Text>{`Tarih: ${item.date}`}</Text>
+          <Text>{`Saat: ${item.time}`}</Text>
+        </View>
+      );
 return (
 <SafeAreaView style={styles.container}>
     <Text style={styles.pageTitle}>SEFERLER</Text>
     <ScrollView>
     { datas.map((data) => (
-        <TouchableOpacity onPress={() => navigation.navigate('İçerik Detay')}>
-            <Card data={data}/>
-        </TouchableOpacity>
+        // <TouchableOpacity onPress={() => navigation.navigate('İçerik Detay')}>
+        //     <Card data={data}/>
+        // </TouchableOpacity>
+
+      <FlatList
+      data={services}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+      contentContainerStyle={styles.list}
+    />
     ))}
     </ScrollView>
 </SafeAreaView>
@@ -156,6 +173,8 @@ color:'black',
 fontSize: 30,
 textAlign:'center',
 },
-
+list: {
+    marginTop: 20,
+  },
 });
 
